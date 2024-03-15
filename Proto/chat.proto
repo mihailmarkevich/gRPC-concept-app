@@ -1,0 +1,14 @@
+syntax = "proto3"; //if you don't do this the protocol buffer compiler will assume you are using proto2
+
+package chat; //Package name isn't required, but useful to create somelike a namespace
+
+// The Chatter service definition.
+service Chatter {
+  // Sends an online request
+  rpc Chat (stream ChatMessage) returns (stream ChatMessage);    //Both arguments are streams. It's a bi-direactional call
+}
+
+message ChatMessage {
+	string user = 1; //Field numbers are required identificators for Protobuf messages
+	string text = 2;
+}

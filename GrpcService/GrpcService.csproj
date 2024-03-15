@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <Protobuf Include="..\Proto\online.proto" GrpcServices="Server" Link="Protos\online.proto" />
+	  <Protobuf Include="..\Proto\transfer.proto" GrpcServices="Server" Link="Protos\transfer.proto" />
+	  <Protobuf Include="..\Proto\chat.proto" GrpcServices="Server" Link="Protos\chat.proto" />
+	  <Protobuf Include="..\Proto\testtransfer.proto" GrpcServices="Server" Link="Protos\testtransfer.proto" />  
+	  
+    <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+	  
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\launchSettings.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

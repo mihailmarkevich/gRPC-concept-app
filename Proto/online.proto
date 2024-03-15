@@ -1,0 +1,16 @@
+syntax = "proto3"; //if you don't do this the protocol buffer compiler will assume you are using proto2
+
+import "google/protobuf/empty.proto"; //We must import this to specify empty arguments for CheckOnline method
+
+package online; //Package name isn't required, but useful to create somelike a namespace
+
+// The Onliner service definition.
+service Onliner {
+  // Sends an online request
+  rpc CheckOnline (google.protobuf.Empty) returns (HelloReply);    //No one of arguments is a stream, it's an Unary request.
+}
+
+// The response message containing the greetings.
+message HelloReply {
+  string message = 1; //Field numbers are required identificators for Protobuf messages
+}

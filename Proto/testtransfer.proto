@@ -1,0 +1,48 @@
+syntax = "proto3"; //if you don’t do this the protocol buffer compiler will assume you are using proto2
+
+package tests; //Package name isn't required, but useful to create somelike a namespace
+
+// The Transfer service definition.
+service TestTransfer {
+  rpc TransferUnaryTest (TransferMessage) returns (TransferMessage);
+
+  rpc TransferDuplexStreamTest (stream TransferMessage) returns (stream TransferMessage);
+
+  rpc UploadUnaryTest (UploadFileRequest) returns (UploadFileResponse);
+
+  rpc DownloadUnaryTest (DownloadFileRequest) returns (DownloadFileResponse);
+
+  rpc UploadStreamTest (stream UploadFileRequest) returns (UploadFileResponse);
+
+  rpc DownloadStreamTest (DownloadFileRequest) returns (stream DownloadFileResponse);
+
+  rpc UploadDuplexStreamTest (stream UploadFileRequest) returns (stream UploadFileResponse);
+
+  rpc UploadNoChunkDuplexStreamTest (stream UploadFileRequest) returns (stream UploadFileResponse);
+}
+
+message TransferMessage {
+	string text = 1;
+}
+
+message UploadFileRequest {
+  FileMetadata metadata = 1; //Field numbers are required identificators for Protobuf messages
+  bytes data = 2;
+}
+
+message DownloadFileRequest {
+}
+
+//You can define your own types to be used as the field types. This way you can create a complex message structures
+message FileMetadata { 
+  bool start = 1;
+  bool end = 2;
+}
+
+message UploadFileResponse {
+}
+
+message DownloadFileResponse {
+	FileMetadata metadata = 1;
+	bytes data = 2;
+}
